@@ -19,7 +19,7 @@ export function Home() {
             <img src = {googleImg} alt = "logo google"/>
             Crie sua sala
           </button>
-          <div> ou entre em uma sala </div>
+          <div className = "separator"> ou entre em uma sala </div>
           <form>
             <input
               type = "text"
