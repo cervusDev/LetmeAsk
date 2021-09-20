@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { NewRoom } from "./pages/NewRoom";
@@ -22,6 +22,24 @@ type AuthContextType = {
 
 export function App() {
   const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const { displayName, photoURL, uid } = user;
+  
+        if (!displayName || !photoURL) {
+          throw new Error("Missing information from Google Account");
+        }
+  
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL,   
+        });
+      }
+    })
+  },[])
 
   async function signinWithGoogle() {
     const provider = new GoogleAuthProvider();
