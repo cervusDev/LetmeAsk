@@ -6,9 +6,10 @@ import { Button } from "../components/Button";
 import logo from "../assets/logo.svg";
 import illustation from "../assets/illustration.svg";
 
-import "../styles/auth.scss";
 import { useAuth } from "../hooks/useAuth";
-import { ref, set, getDatabase } from "firebase/database";
+import { database } from "../services/firebase";
+
+import "../styles/auth.scss";
 
 export function NewRoom() {
   const { user } = useAuth();
@@ -22,15 +23,14 @@ export function NewRoom() {
     if (newRoom.trim() === "") {
       return;
     }
-    const db = getDatabase();
-
-    const roomRef = await set(ref(db, "rooms"), {
+    
+    const roomRef = database.ref('rooms');
+    const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
-    });
+    })
 
-    history.push(`/room/${user?.id}`);
-    return roomRef;
+    history.push(`/room/${firebaseRoom.key}`);
   }
 
   return (
