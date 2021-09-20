@@ -76,6 +76,33 @@
       }
     }
   }
+
+  .create-room {
+    margin-top: 6.4rem;
+    height: 5rem;
+    border-radius: .8rem;
+    font-weight: 500;
+    background: #ea4335;
+    color: #FFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    border: 0;
+    
+    transition: filter .2s;
+
+    img {
+      margin-right: .8rem;
+    }
+
+    &:hover {
+      filter: brightness(.9);
+    }
+  }
+
   .separator {
     font-size: 1.4rem;
     color: #a8a8b3;
