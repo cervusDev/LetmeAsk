@@ -1,5 +1,5 @@
 import { Button } from "../components/Button";
-
+import {Link} from 'react-router-dom';
 import illustation from "../assets/illustration.svg";
 import logo from "../assets/logo.svg";
 
@@ -22,9 +22,7 @@ export function NewRoom() {
             <input type="text" placeholder="Nome da sala" />
             <Button type="submit">Criar sala</Button>
           </form>
-          {// eslint-disable-next-line jsx-a11y/anchor-is-valid
-          }
-          <p>Quer entrar em uma sala existent? <a href = "#"> Clique aqui</a>
+          <p>Quer entrar em uma sala existent? <Link to = "/"> Clique aqui</Link>
           </p>
         </div>
       </main>
