@@ -1,17 +1,22 @@
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Button";
-
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import illustation from "../assets/illustration.svg";
 import logo from "../assets/logo.svg";
 import googleImg from "../assets/google-icon.svg";
 
 import "../styles/auth.scss";
+import { auth } from "../services/firebase";
 
 export function Home() {
   const history = useHistory();
 
-  function NavigateRoom() {
-    history.push("/room/new");
+  function handleCreateRoom() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then(result => {
+      history.push("/room/new");
+    })
+    
   }
 
   return (
@@ -24,7 +29,7 @@ export function Home() {
       <main>
         <div className="main-content">
           <img src={logo} alt="letmeask" />
-          <button onClick={NavigateRoom} className="create-room">
+          <button onClick={handleCreateRoom} className="create-room">
             <img src={googleImg} alt="logo google" />
             Crie sua sala
           </button>
