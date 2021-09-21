@@ -23,12 +23,12 @@ export function NewRoom() {
     if (newRoom.trim() === "") {
       return;
     }
-    
-    const roomRef = database.ref('rooms');
+
+    const roomRef = database.ref("rooms");
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
-    })
+    });
 
     history.push(`/room/${firebaseRoom.key}`);
   }
@@ -45,6 +45,7 @@ export function NewRoom() {
           <img src={logo} alt="letmeask" />
           <h2>Criar uma nova sala</h2>
           <div className="separator"> ou entre em uma sala </div>
+
           <form onSubmit={handleCreateRoom}>
             <input
               type="text"
@@ -55,6 +56,7 @@ export function NewRoom() {
 
             <Button type="submit">Criar sala</Button>
           </form>
+
           <p>
             Quer entrar em uma sala existent? <Link to="/"> Clique aqui</Link>
           </p>
